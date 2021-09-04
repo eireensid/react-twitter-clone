@@ -22,7 +22,7 @@ export const Tweet: React.FC<TweetProps> = ({
   text,
   user,
   classes,
-}: TweetProps): React.ReactElement => {
+}): React.ReactElement => {
   return (
     <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant="outlined">
       <Grid container spacing={3}>

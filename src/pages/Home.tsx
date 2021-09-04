@@ -1,14 +1,8 @@
 import React from 'react';
-import { Container, Grid, IconButton, Typography, Paper, makeStyles, Theme, withStyles, InputBase, createStyles } from '@material-ui/core';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import SearchIcon from '@material-ui/icons/Search';
-import NotificationIcon from '@material-ui/icons/NotificationsNoneOutlined';
-import MessageIcon from '@material-ui/icons/EmailOutlined';
-import BookmarkIcon from '@material-ui/icons/BookmarkBorderOutlined';
-import ListIcon from '@material-ui/icons/ListAltOutlined';
-import UserIcon from '@material-ui/icons/PermIdentityOutlined';
+import { Container, Grid, Typography, Paper, makeStyles, Theme, withStyles, InputBase, createStyles } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
 import { Tweet } from '../components/Tweet';
+import { SideMenu } from '../components/SideMenu';
 
 
 export const useHomeStyles = makeStyles((theme: Theme) => ({
@@ -60,6 +54,10 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   sideMenuListItemIcon: {
     fontSize: 32,
     marginLeft: -5,
+  },
+  sideMenuTweetButton: {
+    padding: theme.spacing(3.2),
+    marginTop: theme.spacing(2)
   },
   TweetsWrapper: {
     borderRadius: 0,
@@ -121,62 +119,7 @@ export const Home = () => {
     <Container className={classes.wrapper} maxWidth="lg">
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <ul className={classes.sideMenuList}>
-            <li className={classes.sideMenuListItem}>
-              <IconButton className={classes.logo} aria-label="" color="primary">
-                <TwitterIcon className={classes.logoIcon} />
-              </IconButton>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <div>
-                <SearchIcon className={classes.sideMenuListItemIcon} />
-                <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                  Поиск
-                </Typography>
-              </div>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <div>
-                <NotificationIcon className={classes.sideMenuListItemIcon} />
-                <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                  Уведомления
-                </Typography>
-              </div>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <div>
-                <MessageIcon className={classes.sideMenuListItemIcon} />
-                <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                  Сообщения
-                </Typography>
-              </div>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <div>
-                <BookmarkIcon className={classes.sideMenuListItemIcon} />
-                <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                  Закладки
-                </Typography>
-              </div>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <div>
-                <ListIcon className={classes.sideMenuListItemIcon} />
-                <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                  Список
-                </Typography>
-              </div>
-            </li>
-            <li className={classes.sideMenuListItem}>
-              <div>
-                <UserIcon className={classes.sideMenuListItemIcon} />
-                <Typography className={classes.sideMenuListItemLabel} variant="h6">
-                  Профиль
-                </Typography>
-              </div>
-            </li>
-
-          </ul>        
+          <SideMenu classes={classes} /> 
         </Grid>
         <Grid item xs={6}>
           <Paper className={classes.TweetsWrapper} style={{ height: '100%' }} variant="outlined">
