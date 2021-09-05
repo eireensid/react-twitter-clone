@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
-import { useHomeStyles } from '../pages/Home';
+import { useHomeStyles } from '../pages/Home/theme';
 
 
 interface AddTweetFormProps {
@@ -15,19 +15,24 @@ interface AddTweetFormProps {
   maxRows?: number;
 }
 
-
+const MAX_LENGHT = 280
 
 export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   classes,
   maxRows,
 }): React.ReactElement => {
   const [text, setText] = useState<string>('')
-  const textLimitPercent = text.length / 280 * 100 
+  const textLimitPercent = Math.round((text.length / 280) * 100) 
+  const textCount = MAX_LENGHT - text.length
 
-  const handleChangeTextArea = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const handleChangeTextArea = (e: React.FormEvent<HTMLTextAreaElement>): void => {
     if (e.currentTarget) {
       setText(e.currentTarget.value)
     }
+  }
+
+  const handleClickAddTweet = (): void => {
+    setText('')
   }
   
   return (
@@ -58,14 +63,14 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
         <div className={classes.addFormBottomRight}>
           {text && (
             <>
-              <span>280</span>
+              <span>{textCount}</span>
               <div className={classes.addFormCircleProgress}>
                 <CircularProgress
                   variant="static"
                   size={20}
                   thickness={5}
-                  value={textLimitPercent}
-                  style={ textLimitPercent === 100 ? { color: 'rgba(0, 0, 0, 0.1)' } : undefined}
+                  value={text.length >= MAX_LENGHT ? 100 : textLimitPercent}
+                  style={text.length >= MAX_LENGHT ? { color: 'red' } : undefined}
                 />
                 <CircularProgress
                   style={{ color: 'rgba(0, 0, 0, 0.1)' }}
@@ -78,6 +83,8 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
             </>
           )}
           <Button
+            onClick={handleClickAddTweet}
+            disabled={text.length >= MAX_LENGHT}
             color="primary"
             variant="contained">
             Твитнуть
