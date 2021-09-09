@@ -1,9 +1,7 @@
 import React from 'react';
-import classNames from 'classnames';
 import { Container, Grid, Typography, InputAdornment, Paper, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/SearchOutlined';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import ListItem from '@material-ui/core/ListItem/ListItem';
 import Divider from '@material-ui/core/Divider/Divider';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar/ListItemAvatar';
