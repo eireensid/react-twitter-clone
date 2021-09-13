@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles, Theme } from "@material-ui/core";
 import grey from '@material-ui/core/colors/grey';
 
@@ -64,7 +63,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     borderTop: 0,
     borderBottom: 0
   },
-  tweetsCentred: {
+  tweetsCentered: {
     marginTop: 50,
     textAlign: 'center',
   },
