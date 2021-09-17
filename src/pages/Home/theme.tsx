@@ -69,7 +69,8 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   },
   tweetsHeader: {
     borderTop: '0',
-    borderLeft: '0'
+    borderLeft: '0',
+    paddingLeft: 20
   },
   tweet: {
     display: 'flex',
@@ -130,6 +131,10 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     '&:hover': {
       backgroundColor: '#edf3f6',
     },
+    '& a': {
+      color: 'inherit',
+      textDecoration: 'none'
+    }
   },
   addForm: {
     padding: 20,

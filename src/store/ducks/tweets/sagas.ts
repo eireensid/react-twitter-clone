@@ -5,8 +5,9 @@ import { LoadingState } from './contracts/state';
 
 export function* fetchTweetsRequest(): any {
   try {
+    // запрос на получения списка твитов
     const items = yield call(TweetsApi.fetchTweets);
-    // like dispatch
+    // like dispatch, получить данные и передать на redux
     yield put(setTweets(items));
   } catch (error) {
     yield put(setTweetsLoadingState(LoadingState.ERROR));
@@ -14,5 +15,6 @@ export function* fetchTweetsRequest(): any {
 }
 
 export function* tweetsSaga() {
+  // следим за action и будем вызывать функцию
   yield takeLatest(TweetsActionsType.FETCH_TWEETS, fetchTweetsRequest);
 }
