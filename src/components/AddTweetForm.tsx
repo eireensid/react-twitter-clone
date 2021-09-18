@@ -8,6 +8,8 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import { useHomeStyles } from '../pages/Home/theme';
+import { useDispatch } from 'react-redux';
+import { fetchAddTweet } from '../store/ducks/tweets/actionCreators';
 
 
 interface AddTweetFormProps {
@@ -21,6 +23,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   classes,
   maxRows,
 }): React.ReactElement => {
+  const dispatch = useDispatch()
   const [text, setText] = useState<string>('')
   const textLimitPercent = Math.round((text.length / 280) * 100) 
   const textCount = MAX_LENGHT - text.length
@@ -32,6 +35,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   }
 
   const handleClickAddTweet = (): void => {
+    dispatch(fetchAddTweet(text))
     setText('')
   }
   
@@ -66,7 +70,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
               <span>{textCount}</span>
               <div className={classes.addFormCircleProgress}>
                 <CircularProgress
-                  variant="static"
+                  variant="determinate"
                   size={20}
                   thickness={5}
                   value={text.length >= MAX_LENGHT ? 100 : textLimitPercent}
@@ -74,7 +78,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
                 />
                 <CircularProgress
                   style={{ color: 'rgba(0, 0, 0, 0.1)' }}
-                  variant="static"
+                  variant="determinate"
                   size={20}
                   thickness={5}
                   value={100}
