@@ -68,15 +68,25 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
   },
   tweetsHeader: {
+    display: 'flex',
+    alignItems: 'center',
     borderTop: '0',
     borderLeft: '0',
-    paddingLeft: 20
+    padding: '10px 15px',
+    '& h6': {
+      fontWeight: 800
+    }
   },
   tweet: {
     display: 'flex',
+    alignItems: 'flex-start',
     cursor: 'pointer',
     paddingTop: 15,
     paddingLeft: 20
+  },
+  tweetWrapper:{
+    color: 'inherit',
+    textDecoration: 'none'
   },
   tweetAvatar: {
     width: theme.spacing(6.5),

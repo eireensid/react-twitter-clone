@@ -19,6 +19,9 @@ import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectIsTweetsLoading, selectTweetsItems } from '../../store/ducks/tweets/selectors';
 import { Topics } from '../../components/Topics';
 import { fetchTopics } from '../../store/ducks/topics/actionCreators';
+import { Route } from 'react-router-dom';
+import { BackButton } from '../../components/BackButton';
+import { FullTweet } from './components/FullTweet';
 
 
 export const Home = (): React.ReactElement => {
@@ -41,20 +44,33 @@ export const Home = (): React.ReactElement => {
         <Grid item sm={8} md={6}>
           <Paper className={classes.TweetsWrapper} style={{ height: '100%' }} variant="outlined">
             <Paper className={classes.tweetsHeader} variant="outlined">
-              <Typography variant="h6">Главная</Typography>
+              <Route path="/home/:any">
+                <BackButton />
+              </Route> 
+              <Route path={['/home', '/home/search']} exact>
+                <Typography variant="h6">Твиты</Typography>
+              </Route>  
+              <Route path="/home/tweet">
+                <Typography variant="h6">Твитнуть</Typography>
+              </Route>  
             </Paper>
-            <Paper>
-              <div className={classes.addForm}>
-                <AddTweetForm classes={classes} />
-              </div>
-              <div className={classes.addFormBottomLine} />
-            </Paper>
+
+            <Route path={['/home', '/home/search']} exact>
+              <Paper>
+                <div className={classes.addForm}>
+                  <AddTweetForm classes={classes} />
+                </div>
+                <div className={classes.addFormBottomLine} />
+              </Paper>
+            </Route>
+            <Route path="/home" exact>
             { isLoading ? (
                 <div className={classes.tweetsCentered}><CircularProgress /></div> 
 )             : tweets.map(tweet =>
-                <Tweet key={tweet._id} text={tweet.text} user={tweet.user} classes={classes} />,
+                <Tweet key={tweet._id} {...tweet} classes={classes} />,
               )}
-
+            </Route>
+            <Route path="/home/tweet/:id" component={FullTweet} exact />
           </Paper>
         </Grid>
         <Grid item sm={3} md={3}>
