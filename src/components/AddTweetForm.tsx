@@ -8,8 +8,11 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import { useHomeStyles } from '../pages/Home/theme';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchAddTweet } from '../store/ducks/tweets/actionCreators';
+import { selectAddFormState } from '../store/ducks/tweets/selectors';
+import Alert from '@mui/material/Alert';
+import { AddFormState } from '../store/ducks/tweets/contracts/state';
 
 
 interface AddTweetFormProps {
@@ -24,6 +27,8 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   maxRows,
 }): React.ReactElement => {
   const dispatch = useDispatch()
+  // to use state
+  const addFormState = useSelector(selectAddFormState)
   const [text, setText] = useState<string>('')
   const textLimitPercent = Math.round((text.length / 280) * 100) 
   const textCount = MAX_LENGHT - text.length
@@ -45,7 +50,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
         <Avatar
           className={classes.tweetAvatar}
           alt={`Аватарка пользователя UserAvatar`}
-          src="https://pbs.twimg.com/profile_images/796061890451542016/J-O1AguD_bigger.jpg"
+          src="https://source.unsplash.com/random/100x100?1"
         />
         <TextareaAutosize
           onChange={handleChangeTextArea}
@@ -88,13 +93,25 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
           )}
           <Button
             onClick={handleClickAddTweet}
-            disabled={!text || text.length >= MAX_LENGHT}
+            disabled={addFormState === AddFormState.LOADING || !text || text.length >= MAX_LENGHT}
             color="primary"
             variant="contained">
-            Твитнуть
+            {addFormState === AddFormState.LOADING ? (
+              <CircularProgress color="inherit" size={16} />
+            ) : (
+              'Твитнуть'
+            )}
           </Button>
         </div>
       </div>
+      {addFormState === AddFormState.ERROR && (
+        <Alert severity="error">
+          Ошибка при добавлении твита{' '}
+          <span aria-label="emoji-plak" role="img">
+            😞
+          </span>
+        </Alert>
+      )}
     </div>
   );
 }

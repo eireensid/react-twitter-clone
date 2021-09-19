@@ -31,8 +31,9 @@ export const fetchTweets = (): FetchTweetsActionInterface => ({
 })
 
 export type TweetsActions = 
-  SetTweetsActionInterface | 
-  FetchTweetsActionInterface | 
-  SetTweetsLoadingStateActionInterface |
-  FetchAddTweetActionInterface |
-  AddTweetActionInterface
+  | SetTweetsActionInterface 
+  | FetchTweetsActionInterface 
+  | SetTweetsLoadingStateActionInterface 
+  | FetchAddTweetActionInterface
+  | AddTweetActionInterface 
+  | SetAddFormStateActionInterface

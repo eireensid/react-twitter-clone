@@ -129,6 +129,16 @@
         "avatarUrl": "https://source.unsplash.com/random/100x100?5"
       },
       "id": 13
+    },
+    {
+      "_id": "3shason150a",
+      "text": "jkj",
+      "user": {
+        "fullname": "test",
+        "username": "test",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?5"
+      },
+      "id": 14
     }
   ],
   "topics": [
@@ -167,8 +177,8 @@
   ],
   "user": {
     "_id": "5f625ff606bc4fda1e7bf710",
-    "fullname": "Archakov Dennis",
-    "username": "archakov06",
-    "avatarUrl": "https://pbs.twimg.com/profile_images/796061890451542016/J-O1AguD_normal.jpg"
+    "fullname": "Mia Smith",
+    "username": "miasmith",
+    "avatarUrl": "https://source.unsplash.com/random/100x100?1"
   }
 }
