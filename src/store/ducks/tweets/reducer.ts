@@ -37,7 +37,8 @@ export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsA
       break; 
 
     case TweetsActionsType.ADD_TWEET:
-      draft.items.push(action.payload);
+      // it's mutation, can do width immer
+      draft.items.splice(0, 0, action.payload);
       draft.addFormState = AddFormState.NEVER
       break;    
 
